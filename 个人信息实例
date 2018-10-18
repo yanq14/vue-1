@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>个人信息实例</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="info-box">
+            <p name="name">{{name}}</p>
+            
+            <div name="info">
+                <p>{{info[[0]]}}</p>
+                <p>{{info[[1]]}}</p>
+                <p>{{info[[2]]}}</p>
+            </div>
+        </div>
+
+        <script>
+            var infoBoxApp= new Vue({
+                el:"#info-box",
+                data:{
+                    name:"Alex",
+                    info:["一直很喜欢编程的Alex","正在努力学习编程的Alex","最后会变得很厉害的Alex!"]
+                }
+            });
+        </script>
+    </body>
+</html>
