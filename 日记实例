@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>日记实例</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/minty/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="content">
+            <!--日记正文-->
+            <div id="dairy-post-info" class="jumbotron">
+                <h2 name="post-title">
+                    <span name="date" class="display-3 text-primary">{{dairy[0].date}}</span>
+                    <span name="title">{{dairy[0].title}}</span>
+                </h2>
+                <p class="lead">{{dairy[0].ins}}</p>
+                <hr class="my-4">
+                <p>{{dairy[0].content}}</p>
+            </div>
+        </div>
+
+        <script>
+            var contentApp = new Vue({
+                el:"#content",
+                data:{
+                    dairy:[
+                        {
+                            date:"2018/7/28",
+                            title:"学习Vue.js的第一天",
+                            ins:"Inscription",
+                            content:"很容易上手的Vue.js"
+                        }
+                    ]
+                }
+            })
+        </script>
+    </body>
+</html>
