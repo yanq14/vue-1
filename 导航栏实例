@@ -12,14 +12,8 @@
         <div id="content">
             <!--导航栏-->
             <ul id="navigation" class="nav nav-tabs">
-                <li class="nav-item">
-                    <a data-toggle="tab" href="#dairy-post-info" class="nav-link">{{navigation[0].content}}</a>
-                </li>
-                <li class="nav-item">
-                    <a data-toggle="tab" href="#dairy-post-info" class="nav-link">{{navigation[1].content}}</a>
-                </li>
-                <li class="nav-item">
-                    <a data-toggle="tab" href="#dairy-post-info" class="nav-link">{{navigation[2].content}}</a>
+                <li class="nav-item" v-for="item in navigation">
+                    <a data-toggle="tab" v-bind:href="item.href" class="nav-link">{{item.content}}</a>
                 </li>
             </ul>
         </div>
@@ -30,12 +24,15 @@
                     navigation:[
                         {
                             content:"日记",
+                            href:"#dairy-post-info",
                         },
                         {
                             content:"游记",
+                            href:"#travel-post-info",
                         },
                         {
                             content:"照片集",
+                            href:"#pics-post-info",
                         }
                     ],
                 }
