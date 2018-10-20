@@ -15,11 +15,12 @@
                          <span name="date" class="display-3 text-primary">{{item.date}}</span>
                          <span name="title">{{item.title}}</span>
                      </h2>
-                <p class="lead">{{item.ins}}</p>
-                <hr class="my-4">
-                <p>{{item.title}}</p>
-            </div>
-        </div>
+                     <p class="lead">{{item.ins}}</p>
+                     <hr class="my-4">
+                     <p>{{item.title}}</p>
+                </div>
+           </div>
+       </div>
 
         <script>
             var contentApp = new Vue({
