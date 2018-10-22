@@ -20,12 +20,36 @@
                      <p>{{item.title}}</p>
                 </div>
            </div>
+           
+           <button class="btn btn-primary" v-on:click="inputClass='fade modal-dialog active show'">添加日记</button>
+           <div v-bind:class="inputClass" role="document">
+                <div class="modal-content">
+                     <div class="modal-body">
+                         <div class="form-group row" v-for="(value,key) in item">
+                             <label class="col-sm-2 col-form-label">{{key}}</label>
+                             <div class="col-sm-10">
+                                  <input type="text" class="form-control is-valid" v-model:value="item[key]">
+                             </div>
+                         </div>
+                         <div class="modal-footer">
+                              <button class="btn btn-primary">提交</button>
+                         </div>
+                </div>
+           </div>
        </div>
 
         <script>
             var contentApp = new Vue({
                 el:"#content",
                 data:{
+                    inputClass:"fade modal-dialog",
+                    item:{
+                       img:"填入图片地址。若是添加“日记”，可忽略不填",
+                       date:"填入日期",
+                       title:"标题",
+                       ins:"题记",
+                       content:"内容"
+                    },
                     dairy:[
                         {
                             date:"2018/7/28",
