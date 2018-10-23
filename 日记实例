@@ -33,7 +33,7 @@
                          </div>
                        </div>   
                          <div class="modal-footer">
-                              <button class="btn btn-primary">提交</button>
+                              <button class="btn btn-primary" v-on:click="submit('dairy')>提交</button>
                          </div>
                 </div>
            </div>
@@ -50,6 +50,21 @@
                        else{
                            this.inputClass="fade modal-dialog"
                         }
+                     },
+                     submit:function(message){
+                     <!--this.dairy.push()，给日记内容增加新的一项-->
+                     <!--Object.assign({}, this.item)， 是指把this.item里的内容(也就是文本框里的输入)，全部复制保存在一个空元素{ }里-->
+                     <!--如果直接push的话，push的内容是双向绑定的item属性。之后再改变输入框的内容，网页上的显示也会跟着变。-->
+                         if (message==="dairy"){
+                             this.dairy.push(Object.assign({},this.item))
+                         }
+                         this.item.date="填入日期"
+                         this.item.title="标题"
+                         this.item.ins="填入题记。若是添加“照片”，可忽略不填"
+                         this.item.content="内容"
+                         this.item.img="填入图片地址。若是添加“日记”，可忽略不填"
+                         this.inputClass="fade modal-dialog"
+                       
                      }
                   },   
                 data:{
