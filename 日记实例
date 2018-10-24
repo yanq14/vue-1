@@ -17,7 +17,7 @@
                      </h2>
                      <p class="lead">{{item.ins}}</p>
                      <hr class="my-4">
-                     <p>{{item.title}}</p>
+                     <p>{{item.content}}</p>
                 </div>
            </div>
            
