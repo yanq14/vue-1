@@ -83,9 +83,27 @@
                      </h2>
                      <p class="lead">{{item.ins}}</p>
                      <hr class="my-4">
-                     <p>{{item.title}}</p>
+                      <p>{{item.content}}</p>
                 </div>
-               </div>
+           </div>
+           
+           <button class="btn btn-primary" v-on:click="showInput">添加日记</button>
+           <div v-bind:class="inputClass" role="document">
+                <div class="modal-content">
+                     <div class="modal-body">
+                         <div class="form-group row" v-for="(value,key) in item">
+                             <label class="col-sm-2 col-form-label">{{key}}</label>
+                             <div class="col-sm-10">
+                                  <input type="text" class="form-control is-valid" v-model:value="item[key]">
+                             </div>
+                         </div>
+                       </div>   
+                         <div class="modal-footer">
+                              <button class="btn btn-primary" v-on:click="submit('dairy')>提交</button>
+                         </div>
+                </div>
+           </div>
+
                
                <!--练习实例/游记-->
              <div id="travel-post-info" class="container-fluid">
@@ -104,6 +122,22 @@
                               <hr class="my-4">
                               <p>{{item.content}}</p>
                          </div>
+                         
+                         <button class="btn btn-primary" v-on:click="showInput">添加日记</button>
+                         <div v-bind:class="inputClass" role="document">
+                         <div class="modal-content">
+                         <div class="modal-body">
+                         <div class="form-group row" v-for="(value,key) in item">
+                             <label class="col-sm-2 col-form-label">{{key}}</label>
+                             <div class="col-sm-10">
+                                  <input type="text" class="form-control is-valid" v-model:value="item[key]">
+                             </div>
+                         </div>
+                         </div>   
+                         <div class="modal-footer">
+                              <button class="btn btn-primary" v-on:click="submit('travel')>提交</button>
+                         </div>
+                       </div>
                     </div>
                </div>
            
@@ -123,6 +157,23 @@
                                 </div>
                            </div>
                            <br>
+                           
+                           <button class="btn btn-primary" v-on:click="showInput">添加照片</button>
+                         <div v-bind:class="inputClass" role="document">
+                         <div class="modal-content">
+                         <div class="modal-body">
+                         <div class="form-group row" v-for="(value,key) in item">
+                             <label class="col-sm-2 col-form-label">{{key}}</label>
+                             <div class="col-sm-10">
+                                  <input type="text" class="form-control is-valid" v-model:value="item[key]">
+                             </div>
+                         </div>
+                         </div>   
+                         <div class="modal-footer">
+                              <button class="btn btn-primary" v-on:click="submit('pics')>提交</button>
+                         </div>
+                       </div>
+                    </div>
                      </div>
                  </div>
              </div>
@@ -133,7 +184,41 @@
         <script>
             var contentApp=new Vue({
                 el:"#content",
+                methods:{
+                    showInput: function(event){
+                       if(this.inputClass === "fade modal-dialog"){
+                          this.inputClass = "fade modal-dialog active show"
+                       }
+                       else{
+                           this.inputClass="fade modal-dialog"
+                        }
+                     },
+                     submit:function(message){
+                     <!--this.dairy.push()，给日记内容增加新的一项-->
+                     <!--Object.assign({}, this.item)， 是指把this.item里的内容(也就是文本框里的输入)，全部复制保存在一个空元素{ }里-->
+                     <!--如果直接push的话，push的内容是双向绑定的item属性。之后再改变输入框的内容，网页上的显示也会跟着变。-->
+                         if (message==="dairy"){
+                             this.dairy.push(Object.assign({},this.item))
+                         }
+                         this.item.date="填入日期"
+                         this.item.title="标题"
+                         this.item.ins="填入题记。若是添加“照片”，可忽略不填"
+                         this.item.content="内容"
+                         this.item.img="填入图片地址。若是添加“日记”，可忽略不填"
+                         this.inputClass="fade modal-dialog"
+                       
+                     }
+                  },   
                 data:{
+                    inputClass:"fade modal-dialog",
+                    item:{
+                       img:"填入图片地址。若是添加“日记”，可忽略不填",
+                       date:"填入日期",
+                       title:"标题",
+                       ins:"题记",
+                       content:"内容"
+                    },
+              
                     navigation:[
                         {
                             content:"日记",
