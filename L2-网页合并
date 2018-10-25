@@ -200,6 +200,12 @@
                          if (message==="dairy"){
                              this.dairy.push(Object.assign({},this.item))
                          }
+                         else if(message==="travel"){
+                             this.travel.push(Object.assign({},this.item))
+                         }
+                         else{
+                              this.pics.push(Object.assign({},this.item))
+                         }
                          this.item.date="填入日期"
                          this.item.title="标题"
                          this.item.ins="填入题记。若是添加“照片”，可忽略不填"
