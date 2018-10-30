@@ -77,13 +77,7 @@
               <!--日记正文-->
                <div id="dairy-post-info" class="tab-pane active show">
                  cdiv v-for="item in dairy" class="jumbotron">
-                     <h2 name="post-title">
-                         <span name="date" class="display-3 text-primary">{{item.date}}</span>
-                         <span name="title">{{item.title}}</span>
-                     </h2>
-                     <p class="lead">{{item.ins}}</p>
-                     <hr class="my-4">
-                      <p>{{item.content}}</p>
+                     <text-content-componet></text-content-component> 
                 </div>
            </div>
            
@@ -113,14 +107,7 @@
                             <img height="300" width="400" v-bind:src="item.img">
                          </div>
                          <div class="col-md-7">
-                              <h2 name="post-title">
-                                   <span name="date" class="display-3 text-primary">{{item.date}}</span>
-                                   <br>
-                                   <span name="title">{{item.title}}</span>
-                              </h2>
-                              <p class="lead">{{item.ins}}</p>
-                              <hr class="my-4">
-                              <p>{{item.content}}</p>
+                              <text-content-componet></text-content-component> 
                          </div>
                          
                          <button class="btn btn-primary" v-on:click="showInput">添加日记</button>
@@ -182,6 +169,18 @@
         </div>
         
         <script>
+           Vue.component("text-content-component",{
+                template:`
+                    <div>
+                        <h2 name="post-title">
+                        <span name="date" class="display-3 text-primary">2018/08/01</span>
+                        <span name="title">学习Vue.js</span>
+                        </h2>
+                        <p class="lead">coding my future</p>
+                        <hr class="my-4">
+                        <p>易于上手的Vue.js</p>
+                    </div>`
+            })
             var contentApp=new Vue({
                 el:"#content",
                 methods:{
