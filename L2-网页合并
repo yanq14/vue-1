@@ -39,6 +39,13 @@
             overflow-y:auto;
             overflow-x:hidden;
             }
+            
+            .slide-enter-active, .slide-leave-active{
+                 transition:opacity .5s;
+            } 
+            .slide-enter,.slide-leave-to{
+                 opacity: 0;
+            }     
     </style>
       </style>
             
@@ -76,10 +83,13 @@
               
               <!--日记正文-->
                <div id="dairy-post-info" class="tab-pane active show">
-                 cdiv v-for="item in dairy" class="jumbotron">
-                     <text-content-componet></text-content-component> 
+                 cdiv v-for="(item,index) in dairy" class="jumbotron">
+                     <!--原生过渡-->
+                     <transition-group name="slide" tag="div">
+                     <text-content-componet v-bind:item="item" v-bind:key="index" v-if="on"></text-content-component> 
                 </div>
            </div>
+           <button class="btn btn-info" @click="on=!on">过渡</button>
            
            <button class="btn btn-primary" v-on:click="showInput">添加日记</button>
            <div v-bind:class="inputClass" role="document">
@@ -215,6 +225,7 @@
                      }
                   },   
                 data:{
+                    on:true;
                     inputClass:"fade modal-dialog",
                     item:{
                        img:"填入图片地址。若是添加“日记”，可忽略不填",
