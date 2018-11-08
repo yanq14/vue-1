@@ -45,7 +45,35 @@
             } 
             .slide-enter,.slide-leave-to{
                  opacity: 0;
-            }     
+            }   
+            
+            /*解决照片定位错乱*/
+            #pics-post-info .row div{
+                display:flex;
+                flex-direction:row;
+                flex-wrap:wrap;
+             }
+             
+            .row .card{
+                width:100%;
+                height:300px;
+            }
+            
+            /*照片--动画*/
+            .fade-enter-active,.fade-leave-active{
+                   transition:all 3s ease-out;
+             }
+             
+             .fade-enter{
+                    transform:translateX(500px);
+                    opacity:0;
+              }
+              
+             .fade-leave-active{
+                    transform:translateY(500px);
+                    opacity:0;
+              }
+          
     </style>
       </style>
             
@@ -117,7 +145,9 @@
                             <img height="300" width="400" v-bind:src="item.img">
                          </div>
                          <div class="col-md-7">
-                              <text-content-componet></text-content-component> 
+                              <!--第三方动画库-->
+                              <transition name="custom" enter-active-class"="animated data" leave-active-class="animated bounceOutRight">
+                              <text-content-componet v-bind:item="item" v-if="isshow"></text-content-component> 
                          </div>
                          
                          <button class="btn btn-primary" v-on:click="showInput">添加日记</button>
@@ -142,20 +172,16 @@
             <!--图片集-->
              <div id="pics-post-info" class="container tab-pane">
                 <div class="row">
-                     <div class="col-md-4" v-for="item in pics">
-                          <div class="card">
-                               <img class="card-img" v-bind:src="item.img" height=300 alt="card image">
-                               <div class="card-img-overlay" style="color:azure">
-                                    <h4 class="card-title">{{item.title}}</h4>
-                                    <p class="card-text">{{item.content}}</p>
-                                    <p class="card-text" style="color:azure">
-                                        <small class="text-muted">{{item.date}}</small>
-                                    </p>
-                                </div>
+                     <transition-group name="fade" tag="div">
+                     <!--原生动画-->
+                        <pic-content-component v-for="(i,index) in pics.length"
+                        v-bind:item="pics[i-1]" v-bind:key="index"
+                        v-if="show"></pic-content-component> 
+                     </transition-group>
                            </div>
                            <br>
-                           
-                           <button class="btn btn-primary" v-on:click="showInput">添加照片</button>
+                         <button class="btn btn-info" @click="show=!show">动画</button> 
+                         <button class="btn btn-primary" v-on:click="showInput">添加照片</button>
                          <div v-bind:class="inputClass" role="document">
                          <div class="modal-content">
                          <div class="modal-body">
@@ -226,6 +252,8 @@
                   },   
                 data:{
                     on:true;
+                    isshow:true;
+                    show:true;
                     inputClass:"fade modal-dialog",
                     item:{
                        img:"填入图片地址。若是添加“日记”，可忽略不填",
